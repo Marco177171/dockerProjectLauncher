@@ -1,0 +1,28 @@
+services:
+  mysql:
+    container_name: mysql
+    build: ./backend
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    env_file:
+      - ./backend/.env
+    networks:
+      - appNet
+    volumes:
+      - backendVolume:/var/lib/volumes
+  adminer:
+    container_name: adminer
+    image: adminer:latest
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+    networks:
+      - appNet
+
+networks:
+  appNet:
+
+volumes:
+ backendVolume: 
