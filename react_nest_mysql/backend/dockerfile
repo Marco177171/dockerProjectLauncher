@@ -1,20 +1,20 @@
-FROM mysql:latest
+# Base image
+FROM node:latest
 
-RUN chown -R mysql:root /var/lib/mysql/
+# Create app directory
+WORKDIR /usr/src/app
 
-# ARG MYSQL_DATABASE
-# ARG MYSQL_USER
-# ARG MYSQL_PASSWORD
-# ARG MYSQL_ROOT_PASSWORD
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
 
-ENV MYSQL_DATABASE=database
-ENV MYSQL_USER=user
-ENV MYSQL_PASSWORD=pass
-ENV MYSQL_ROOT_PASSWORD=pass
+# Install app dependencies
+RUN npm install
 
-# ADD data.sql /etc/mysql/data.sql
+# Bundle app source
+COPY . .
 
-# RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/data.sql
-# RUN cp /etc/mysql/data.sql /docker-entrypoint-initdb.d
+# Creates a "dist" folder with the production build
+RUN npm run build
 
-EXPOSE 3306
+# Start the server using the production build
+CMD [ "node", "dist/main.js" ]
