@@ -1,0 +1,17 @@
+services:
+  frontend:
+    depends_on:
+      - mysql
+      - backend
+    container_name: react_frontend
+    build: ./react_frontend
+    image: node:latest
+    ports:
+      - 3000:3000
+    env_file:
+      - ./react_frontend/.env
+    networks:
+      - appNet
+    restart: always
+    stdin_open: true
+    tty: true
