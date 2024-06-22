@@ -11,3 +11,6 @@ clean:
 
 free:
 	docker rm adminer mysql
+
+pure:
+	docker system prune -a
