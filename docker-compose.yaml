@@ -1,0 +1,9 @@
+services:
+  # copy and customize
+  # services here...
+
+volumes:
+  # define here volumes for persistent data
+
+networks:
+  # create networks for communication among containers

@@ -1,4 +1,4 @@
-NAME=NodeApp
+NAME=DockerizedApp
 
 $(NAME):
 	docker compose up
