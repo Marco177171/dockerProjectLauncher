@@ -1,13 +1,13 @@
 NAME=NodeApp
 
 $(NAME):
-	docker compose up --build
+	docker compose up
 
 stop:
 	docker compose down
 
 clean:
-	docker compose down --volumes
+	docker compose down --volumes && docker container prune
 
 free:
 	docker rm adminer mysql
