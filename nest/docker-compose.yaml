@@ -12,5 +12,3 @@ services:
     # networks:
     #   - ...
     restart: always
-    stdin_open: true
-    tty: true

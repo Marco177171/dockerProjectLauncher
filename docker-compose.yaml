@@ -1,3 +1,5 @@
+# starting template for building containerized app
+
 services:
   # copy and customize
   # services here...
